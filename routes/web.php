@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PelangganController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +27,4 @@ Route::get('/home', function () {
     return view('main');
 });
 
-// // LOGOUT
-// Route::middleware('auth')->group(function(){
-//     Route::resource('tasks', TaskController::class);
-//     Route::post('logout', LogoutController::class);
-// })
+Route::resource('pelanggan', PelangganController::class);

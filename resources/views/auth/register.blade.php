@@ -1,4 +1,3 @@
-@extends('layouts.app')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>2nd Mobil Bekas - Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('bootstrapp/style/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -26,19 +25,24 @@
 
 <body class="bg-gradient-primary">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="container mx-auto">
+    <div class="col-lg-8 col-md-11 col-24 mx-auto">
+    <div class="card z-index-0 fadeIn3 fadeInBottom">
+    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 
-                <div class="card-body">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-6 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -52,7 +56,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-6 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -66,7 +70,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-6 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -80,7 +84,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-6 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -95,11 +99,16 @@
                             </div>
                         </div>
                     </form>
+                            <div class="text-center">
+                                <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('bootstrapp/style/vendor/jquery/jquery.min.js')}}"></script>
@@ -114,4 +123,3 @@
 </body>
 
 </html>
-@endsection
