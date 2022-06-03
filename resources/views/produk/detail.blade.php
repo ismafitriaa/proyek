@@ -14,6 +14,7 @@
                     <li class="list-group-item"><b>Harga: </b>{{$Produk->harga}}</li>
                     <li class="list-group-item"><b>Stok: </b>{{$Produk->stok}}</li>
                     <li class="list-group-item"><b>Keterangan: </b>{{$Produk->keterangan}}</li>
+                    <li class="list-group-item"><b>Foto: </b><img style="width: 100%" src="{{ asset('./storage/'. $Produk->featured_image) }}" alt=""></li>
                 </ul>
             </div>
             <a class="btn btn-success mt-3" href="{{ route('produk.index') }}">Kembali</a>

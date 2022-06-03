@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PodukController extends Controller
 {
@@ -39,12 +40,16 @@ class PodukController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->file('featured_image')) {
+            $image_name = $request->file('featured_image')->store('images', 'public');
+        }
         //melakukan validasi data
         $request->validate([
             'Jenis_Mobil' => 'required',
             'Harga' => 'required',
             'Stok' => 'required',
             'Keterangan' => 'required',
+            'featured_image' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
         Produk::create($request->all());
@@ -94,6 +99,7 @@ class PodukController extends Controller
             'Harga' => 'required',
             'Stok' => 'required',
             'Keterangan' => 'required',
+            'featured_image' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         Produk::where('jenis_mobil', $jenis_mobil)
@@ -102,7 +108,19 @@ class PodukController extends Controller
             'harga'=>$request->Harga,
             'stok'=>$request->Stok,
             'keterangan'=>$request->Keterangan,
+            'featured_image'=>$request->featured_image,
         ]);
+
+        if ($produk->featured_image && file_exists(storage_path('app/public/'. $produk->featured_image))) {
+            Storage::delete('public/'. $produk->featured_image);
+        }
+
+        $image_name = '';
+            if ($request->file('featured_image')) {
+        $image_name = $request->file('featured_image')->store('images', 'public');
+        }
+
+        $produk->featured_image = $image_name;
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('produk.index')
         ->with('success', 'Produk Berhasil Diupdate');

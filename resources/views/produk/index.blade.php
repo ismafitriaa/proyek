@@ -30,6 +30,7 @@
         <th>Harga</th>
         <th>Stok</th>
         <th>Keterangan</th>
+        <th>Foto</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($produk as $pdk)
@@ -38,6 +39,7 @@
         <td>{{ $pdk ->harga }}</td>
         <td>{{ $pdk ->stok }}</td>
         <td>{{ $pdk ->keterangan }}</td>
+        <td><img width="50px"src="{{asset('storage/'.$pdk->featured_image)}}"></td>
         <td>
         <form action="{{ route('produk.destroy',['produk'=>$pdk->jenis_mobil]) }}" method="POST">
             <a class="btn btn-info" href="{{ route('produk.show',$pdk->jenis_mobil) }}">Show</a>
